@@ -1,4 +1,4 @@
-package socketexample;
+package simple.socketexample;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
