@@ -43,6 +43,8 @@ public class TestSocketServerHandler extends SimpleChannelInboundHandler<String>
         Channel channel = ctx.channel();
 
         channels.writeAndFlush("【服务器】- " + channel.remoteAddress() + " 离开\n");
+
+        System.out.println("channelGroup size: " + channels.size());
     }
 
     @Override
