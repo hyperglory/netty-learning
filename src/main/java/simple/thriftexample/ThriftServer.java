@@ -25,6 +25,8 @@ public class ThriftServer {
 
         TServer server = new THsHaServer(arg);
 
+        System.out.println("Thrift Server Started!");
+
         server.serve();
     }
 }
