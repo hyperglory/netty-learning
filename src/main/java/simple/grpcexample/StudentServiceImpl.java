@@ -2,6 +2,8 @@ package simple.grpcexample;
 
 import io.grpc.stub.StreamObserver;
 
+import java.util.UUID;
+
 /**
  * @author hyperglory
  * @date 2017/6/30 11:29
@@ -50,6 +52,28 @@ public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBas
                         .addStudentResponse(response1).addStudentResponse(response2).addStudentResponse(response3).build();
 
                 responseObserver.onNext(responseList);
+                responseObserver.onCompleted();
+            }
+        };
+    }
+
+    @Override
+    public StreamObserver<StreamRequest> biTalk(StreamObserver<StreamResponse> responseObserver) {
+        return new StreamObserver<StreamRequest>() {
+            @Override
+            public void onNext(StreamRequest value) {
+                System.out.println(value.getRequestInfo());
+
+                responseObserver.onNext(StreamResponse.newBuilder().setResponseInfo(UUID.randomUUID().toString()).build());
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                System.out.println(t.getMessage());
+            }
+
+            @Override
+            public void onCompleted() {
                 responseObserver.onCompleted();
             }
         };
