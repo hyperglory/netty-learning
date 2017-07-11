@@ -32,6 +32,8 @@ buildscript {
     }
 }
 
+[compileJava,compileTestJava]*.options*.encoding = 'UTF-8'
+
 protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:3.2.0"
@@ -43,9 +45,12 @@ protobuf {
     }
     generateProtoTasks {
         all()*.plugins {
-            grpc {}
+            grpc {
+                outputSubDir = 'java'
+            }
         }
     }
+    generatedFilesBaseDir = "src"
 }
 
 task wrapper(type: Wrapper) {
