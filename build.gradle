@@ -46,10 +46,12 @@ protobuf {
     generateProtoTasks {
         all()*.plugins {
             grpc {
+                // gRPC service output directory
                 outputSubDir = 'java'
             }
         }
     }
+    // gRPC object output directory
     generatedFilesBaseDir = "src"
 }
 
