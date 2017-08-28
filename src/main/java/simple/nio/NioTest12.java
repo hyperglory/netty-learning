@@ -2,6 +2,7 @@ package simple.nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -11,6 +12,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
+ * {@link Selector}
+ *
  * @author hyperglory
  * @date 2017/8/28 17:34
  */
@@ -29,9 +32,9 @@ public class NioTest12 {
         for (int i = 0; i < ports.length; i++) {
             ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.configureBlocking(false);
-            SocketChannel socketChannel = serverSocketChannel.accept();
+            ServerSocket serverSocket = serverSocketChannel.socket();
             InetSocketAddress inetSocketAddress = new InetSocketAddress(ports[i]);
-            socketChannel.bind(inetSocketAddress);
+            serverSocket.bind(inetSocketAddress);
 
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
